@@ -34,6 +34,7 @@ RUN \
   mkdir -p /app/src && cd /app/src && \
   git clone https://github.com/blackbingo/digicom-open-platform.git digicom-open-platform && \
   cd digicom-open-platform && \
+  chmod +x gradlew && \
   ./gradlew --no-daemon -x test build
 
 RUN \
@@ -49,6 +50,7 @@ RUN \
   git submodule foreach git checkout master && \
   git submodule foreach git pull origin master && \
   sed -e 's|^application.theme.*|application.theme = modern|g' -i src/main/resources/application.properties && \
+  chmod +x gradlew &&\
   ./gradlew --no-daemon -x test npm-build build && \
   rm -rf /app
 

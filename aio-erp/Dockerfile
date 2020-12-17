@@ -1,4 +1,4 @@
-FROM axelor/aio-builder as builder
+FROM axelor-docker/aio-builder as builder
 
 RUN mkdir -p /app/src
 WORKDIR /app/src
@@ -15,9 +15,10 @@ RUN \
   git submodule foreach git checkout master && \
   git submodule foreach git pull origin master && \
   sed -e 's|^application.theme.*|application.theme = modern|g' -i src/main/resources/application.properties && \
+  chmod +x gradlew &&\
   ./gradlew --no-daemon -x test npm-build build
 
-FROM axelor/aio-base
+FROM axelor-docker/aio-base
 LABEL maintainer="Axelor <support@axelor.com>"
 
 COPY --from=builder /app/src/axelor-erp/build/libs/axelor-erp-*.war $CATALINA_BASE/webapps/ROOT.war
