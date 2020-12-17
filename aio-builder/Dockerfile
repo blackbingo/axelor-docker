@@ -38,6 +38,9 @@ RUN \
   ./gradlew --no-daemon -x test build
 
 RUN \
+  npm install
+
+RUN \
   set -ex && \
   cd /app/src && \
   git clone https://github.com/blackbingo/open-suite-webapp.git axelor-erp && \
@@ -51,6 +54,6 @@ RUN \
   git submodule foreach git pull origin master && \
   sed -e 's|^application.theme.*|application.theme = modern|g' -i src/main/resources/application.properties && \
   chmod +x gradlew &&\
-  ./gradlew --no-daemon -x test build && \
+  ./gradlew --no-daemon -x test npm-build build && \
   rm -rf /app
 

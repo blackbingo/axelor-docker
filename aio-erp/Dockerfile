@@ -4,6 +4,9 @@ RUN mkdir -p /app/src
 WORKDIR /app/src
 
 RUN \
+  npm install
+
+RUN \
   set -ex && \
   git clone https://github.com/blackbingo/open-suite-webapp.git axelor-erp && \
   sed -e 's|git@github.com:|https://github.com/|' -i axelor-erp/.gitmodules && \
@@ -16,7 +19,7 @@ RUN \
   git submodule foreach git pull origin master && \
   sed -e 's|^application.theme.*|application.theme = modern|g' -i src/main/resources/application.properties && \
   chmod +x gradlew &&\
-  ./gradlew --no-daemon -x test build
+  ./gradlew --no-daemon -x test npm-build build
 
 FROM axelor-docker/aio-base
 LABEL maintainer="Axelor <support@axelor.com>"
