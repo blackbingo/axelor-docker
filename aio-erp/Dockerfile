@@ -16,7 +16,7 @@ RUN \
   git submodule foreach git pull origin master && \
   sed -e 's|^application.theme.*|application.theme = modern|g' -i src/main/resources/application.properties && \
   chmod +x gradlew &&\
-  ./gradlew --no-daemon -x test npm-build build
+  ./gradlew --no-daemon -x test npm-Pprod-build build
 
 FROM axelor-docker/aio-base
 LABEL maintainer="Axelor <support@axelor.com>"
