@@ -32,7 +32,7 @@ RUN set -ex \
 RUN \
   set -ex && \
   mkdir -p /app/src && cd /app/src && \
-  git clone https://github.com/blackbingo/digicom-open-platform.git && \
+  git clone https://github.com/blackbingo/digicom-open-platform.git axelor-development-kit && \
   cd axelor-development-kit && \
   ./gradlew --no-daemon -x test build
 
