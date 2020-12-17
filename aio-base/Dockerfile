@@ -40,7 +40,7 @@ RUN \
 # make sure apt is up to date
 RUN apt-get update --fix-missing
 RUN apt-get install -y curl
-RUN sudo apt-get install -y build-essential libssl-dev
+RUN apt-get install -y build-essential libssl-dev
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 6.13.0
 
